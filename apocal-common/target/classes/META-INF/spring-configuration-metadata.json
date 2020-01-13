@@ -1,0 +1,27 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.jd.common.bean.config.FilterIgnorePropertiesConfig",
+      "name": "ignore",
+      "type": "com.jd.common.bean.config.FilterIgnorePropertiesConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.jd.common.bean.config.FilterIgnorePropertiesConfig",
+      "name": "ignore.clients",
+      "type": "java.util.List<java.lang.String>"
+    },
+    {
+      "sourceType": "com.jd.common.bean.config.FilterIgnorePropertiesConfig",
+      "name": "ignore.excludes",
+      "type": "java.util.List<java.lang.String>"
+    },
+    {
+      "sourceType": "com.jd.common.bean.config.FilterIgnorePropertiesConfig",
+      "name": "ignore.urls",
+      "type": "java.util.List<java.lang.String>"
+    }
+  ]
+}

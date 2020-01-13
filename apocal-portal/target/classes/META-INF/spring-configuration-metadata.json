@@ -1,0 +1,31 @@
+{
+  "hints": [],
+  "groups": [],
+  "properties": [
+    {
+      "name": "export.dir",
+      "description": "Description for export.dir.",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "model.image.repository",
+      "description": "Description for model.image.repository.",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "portal.service",
+      "description": "Description for portal.service.",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "service.namespace",
+      "description": "Description for service.namespace.",
+      "type": "java.lang.String"
+    },
+    {
+      "name": "workflow.image.repository",
+      "description": "Description for workflow.image.repository.",
+      "type": "java.lang.String"
+    }
+  ]
+}

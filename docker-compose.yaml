@@ -1,0 +1,106 @@
+version: "2"
+
+services:
+  mysql:
+    image: 10.10.136.153/library/mysql
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=123.abc
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d
+    networks:
+      - apocal
+
+  redis:
+    image: 10.10.136.153/library/redis
+    expose:
+      - 6379
+    networks:
+      - apocal
+
+  activemq:
+    image: 10.10.136.153/library/activemq
+    expose:
+      - 61616
+      - 8161
+    networks:
+      - apocal
+
+  apocal-model:
+    image: 10.10.136.153/apocal/apocal-model:1.0
+    depends_on:
+      - mysql
+      - activemq
+      - redis
+      - apocal-eureka
+    expose:
+      - 8999
+    networks:
+      - apocal
+    volumes:
+      - ./wait-for-it.sh:/wait-for-it.sh
+    entrypoint: ["/wait-for-it.sh","mysql:3306","--timeout=30","--strict","--","java","-jar","/apocal-model.jar"]
+
+  apocal-portal:
+    image: 10.10.136.153/apocal/apocal-portal:1.0
+    depends_on:
+      - mysql
+      - activemq
+      - redis
+      - apocal-eureka
+    expose:
+      - 8998
+    networks:
+      - apocal
+    volumes:
+      - ./wait-for-it.sh:/wait-for-it.sh
+    entrypoint: ["/wait-for-it.sh","mysql:3306","--timeout=30","--strict","--","java","-jar","/apocal-portal.jar"]
+
+  apocal-eureka:
+    image: 10.10.136.153/apocal/apocal-eureka:1.0
+    expose:
+      - 1025
+    ports:
+      - 1025:1025
+    networks:
+      - apocal
+    entrypoint: ["java","-jar","/apocal-eureka.jar"]
+
+  apocal-auth:
+    image: 10.10.136.153/apocal/apocal-auth:1.0
+    depends_on:
+      - mysql
+      - activemq
+      - redis
+      - apocal-eureka
+    expose:
+      - 7001
+    networks:
+      - apocal
+    volumes:
+      - ./wait-for-it.sh:/wait-for-it.sh
+    entrypoint: ["/wait-for-it.sh","mysql:3306","--timeout=30","--strict","--","java","-jar","/apocal-auth.jar"]
+
+  apocal-gateway:
+    image: 10.10.136.153/apocal/apocal-gateway:1.0
+    depends_on:
+      - mysql
+      - activemq
+      - redis
+      - apocal-eureka
+      - apocal-auth
+    expose:
+      - 9999
+    ports:
+      - 9999:9999
+    networks:
+      - apocal
+    volumes:
+      - ./wait-for-it.sh:/wait-for-it.sh
+    entrypoint: ["/wait-for-it.sh","mysql:3306","--timeout=30","--strict","--","java","-jar","/apocal-gateway.jar"]
+networks:
+  apocal:
+    external: false

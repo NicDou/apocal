@@ -1,0 +1,29 @@
+{
+  "properties": [
+    {
+      "name": "service.namespace",
+      "type": "java.lang.String",
+      "description": "Description for service.namespace."
+    },
+    {
+      "name": "portal.service",
+      "type": "java.lang.String",
+      "description": "Description for portal.service."
+    },
+    {
+      "name": "workflow.image.repository",
+      "type": "java.lang.String",
+      "description": "Description for workflow.image.repository."
+    },
+    {
+      "name": "model.image.repository",
+      "type": "java.lang.String",
+      "description": "Description for model.image.repository."
+    },
+    {
+      "name": "export.dir",
+      "type": "java.lang.String",
+      "description": "Description for export.dir."
+    }
+  ]
+}

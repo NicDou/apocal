@@ -1,0 +1,11 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.jd.apocal.auth.config.JedisConfig",
+      "name": "",
+      "type": "com.jd.apocal.auth.config.JedisConfig"
+    }
+  ],
+  "properties": []
+}
